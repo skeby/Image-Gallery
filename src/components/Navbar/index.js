@@ -1,3 +1,4 @@
+import Searchbar from '../../components/Searchbar';
 import LoginButton from '../../components/LoginButton';
 import LogoutButton from '../../components/LogoutButton';
 import Profile from "../../components/Profile";
@@ -7,12 +8,13 @@ import './style.css'
 const Navbar = () => {
     return (
         <nav>
-            <p>Image Library</p>
+            <p>Image Gallery</p>
             <div className='nav-space'></div>
+            <Searchbar />
             <div className='nav-right'>
+                <Profile />
                 <LoginButton />
                 <LogoutButton />
-                <Profile />
             </div>
         </nav>
     );

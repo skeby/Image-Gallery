@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 nav {
     display: flex;
     align-items: center;
@@ -27,7 +31,7 @@ nav p {
 button {
     margin: 0;
     border: none;
-    border-radius: 30px;
+    border-radius: 10px;
     padding: 10px 22px;
     color: #fff;
     background-color: rgb(0, 76, 143);
@@ -35,8 +39,12 @@ button {
     cursor: pointer;
 }
 
+button:active {
+    transform: scale(0.95);
+}
+
 button#logout {
-    margin-right: 1rem;
+    margin-left: 1rem;
 }
 
 .profile-container {
