@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+
+import Loader from "../Loader";
 import "./style.css";
 
 const ImageCard = ({ image }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: image.id });
   const style = {
@@ -12,14 +15,13 @@ const ImageCard = ({ image }) => {
     transform: CSS.Transform.toString(transform),
     zIndex: transform ? 1 : 0,
   };
-  const [isLoading, setIsLoading] = useState(true);
 
   const handleImageLoad = () => {
     setIsLoading(false);
   };
+
   return (
     <div
-      className="image-card-container"
       ref={setNodeRef}
       style={style}
       {...attributes}
@@ -27,13 +29,25 @@ const ImageCard = ({ image }) => {
       key={image.id}
       image={image}
     >
-      <img
-        src={image.url}
-        alt={image.tag}
-        style={{ display: isLoading ? "none" : "block" }}
-        onLoad={handleImageLoad}
-      ></img>
-      <span>{image.tag}</span>
+      <div className="image-card">
+        {isLoading && (
+          <div className="image-loader">
+            <Loader />
+          </div>
+        )}
+        <img
+          src={image.url}
+          alt={image.tag}
+          style={{ display: isLoading ? "none" : "block" }}
+          onLoad={handleImageLoad}
+        ></img>
+        <span
+          className="image-tag"
+          style={{ display: isLoading ? "none" : "block" }}
+        >
+          {image.tag}
+        </span>
+      </div>
     </div>
   );
 };

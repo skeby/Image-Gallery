@@ -18,8 +18,8 @@ export default function SearchBar({ onSearch }) {
     }
   };
   return (
-    <div className="max-w-md mx-auto mr-16">
-      <div className="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
+    <div className="max-w-md mx-auto mr-2 search-bar-container">
+      <div className="relative flex items-center w-42 h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
         <div className="grid place-items-center h-full w-12 text-gray-300">
           <svg
             xmlns="http://www.w3.org/2000/svg"

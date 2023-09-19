@@ -1,6 +1,6 @@
 .not-found-container {
-  font-family: "DM-sans", sans-serif;
   margin-top: 12.5rem;
+  font-family: "DM-sans", sans-serif;
   text-align: center;
 }
 
@@ -15,9 +15,9 @@
 }
 
 .not-found-container p {
+  margin-bottom: 1.8rem;
   font-size: 1rem;
   color: #777;
-  margin-bottom: 1.8rem;
 }
 
 .not-found-container a {
