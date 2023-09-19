@@ -13,7 +13,7 @@ import "./style.css";
 import {
   SortableContext,
   arrayMove,
-  rectSwappingStrategy,
+  rectSortingStrategy,
 } from "@dnd-kit/sortable";
 
 const Home = () => {
@@ -85,7 +85,7 @@ const Home = () => {
           <div className="image-cards">
             <SortableContext
               items={displayImages}
-              strategy={rectSwappingStrategy}
+              strategy={rectSortingStrategy}
             >
               {filteredImages.map((image) => (
                 <ImageCard key={image.id} image={image} />
