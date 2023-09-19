@@ -4,3 +4,7 @@ img {
     height: 18rem;
     border-radius: 20px;
 }
+
+a {
+    text-decoration: underline;
+}

@@ -5,12 +5,12 @@ import Profile from "../../components/Profile";
 
 import './style.css'
 
-const Navbar = () => {
+const Navbar = ({ onSearch }) => {
     return (
         <nav>
             <p>Image Gallery</p>
             <div className='nav-space'></div>
-            <Searchbar />
+            <Searchbar onSearch={onSearch}/>
             <div className='nav-right'>
                 <Profile />
                 <LoginButton />
