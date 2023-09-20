@@ -18,9 +18,9 @@ export default function SearchBar({ onSearch }) {
     }
   };
   return (
-    <div className="max-w-md mx-auto mr-2 search-bar-container">
+    <div className="max-w-md search-bar-container">
       <div className="relative flex items-center w-42 h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
-        <div className="grid place-items-center h-full w-12 text-gray-300">
+        <div className="grid place-items-center h-full w-12 text-gray-300 search-icon">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -41,7 +41,7 @@ export default function SearchBar({ onSearch }) {
             onChange={handleChange}
             onKeyDown={handleKeyDown}
             type="search"
-            className="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
+            className="peer h-full w-full outline-none text-sm text-gray-700 px-2"
             id="search"
             placeholder="Search for images"
           />

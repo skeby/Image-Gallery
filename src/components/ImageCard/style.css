@@ -26,7 +26,6 @@ img {
 }
 
 .image-tag-container {
-  width: 100%;
   padding: 1.1rem;
   align-items: center;
   justify-content: flex-start;
@@ -38,5 +37,6 @@ img {
   .image-card {
     width: 16rem;
     height: 16rem;
+    font-size: 0.8rem;
   }
 }

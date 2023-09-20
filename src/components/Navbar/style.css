@@ -96,6 +96,10 @@ button#logout {
     margin-left: 0;
     margin-right: 1rem;
   }
+
+  .search-icon {
+    display: none;
+  }
 }
 
 @media (max-width: 450px) {
