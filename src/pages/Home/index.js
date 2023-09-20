@@ -54,7 +54,7 @@ const Home = () => {
 
   const filteredImages = displayImages.filter((image) => {
     return (
-      searchQuery.toLowerCase() === "" ||
+      searchQuery === "" ||
       image.tags.some((tag) => tag.includes(searchQuery))
     );
   });

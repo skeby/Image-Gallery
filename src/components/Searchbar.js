@@ -5,7 +5,7 @@ export default function SearchBar({ onSearch }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch(query);
+    onSearch(query.toLowerCase());
   };
 
   const handleChange = (e) => {
