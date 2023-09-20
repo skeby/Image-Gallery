@@ -54,8 +54,7 @@ const Home = () => {
 
   const filteredImages = displayImages.filter((image) => {
     return (
-      searchQuery === "" ||
-      image.tags.some((tag) => tag.includes(searchQuery))
+      searchQuery === "" || image.tags.some((tag) => tag.includes(searchQuery))
     );
   });
 
@@ -86,7 +85,10 @@ const Home = () => {
     });
   };
 
-  const handleDragError = () => {
+  const handleDragError = ({ active, over }) => {
+    if (!active || !over || active.id === over.id) {
+      return;
+    }
     toast.error("Log in to use drag and drop");
   };
 
