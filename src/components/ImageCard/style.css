@@ -13,14 +13,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
 }
 
 .image-loader svg {
   font-size: 3rem;
-  position: absolute;
-  top: 50%;
-  right: 50%;
 }
 
 img {
