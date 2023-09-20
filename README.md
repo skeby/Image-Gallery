@@ -1,10 +1,30 @@
-# Getting Started with Create React App
+# Image Gallery App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+This project uses Auth0 (https://auth0.com/) for authentication and Unsplash API (https://unsplash.com/developers) for images
+
+To set up this project:
+
+1. Go to Auth0 (https://auth0.com/) and create an SPA (Single Page Application). Under the Settings tab, look for `Application URIs` and set http://localhost:3000/ as `Allowed Callback URL`, `Allowed Logout URL` and `Allowed Web Origin`, scroll to the bottom of the page and click save (Take note of the `Domain` and `Client ID` at the beginning of the Settings tab)
+
+2. Go to Unsplash for Developers (https://unsplash.com/developers) and create an Application (Take note of the `Access Key`)
+
+## Environment Variables
+
+In the root project directory, create a .env file:
+
+### `REACT_APP_AUTH0_DOMAIN=YOUR AUTH0 DOMAIN`
+### `REACT_APP_AUTH0_CLIENT_ID=YOUR CLIENT ID`
+### `REACT_APP_UNSPLASH_ACCESS_KEY=YOUR UNSPLASH ACCESS KEY`
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+Installs the all necessary packages and dependencies for the project
 
 ### `npm start`
 
