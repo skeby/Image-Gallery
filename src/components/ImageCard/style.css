@@ -3,6 +3,8 @@
   height: 22rem;
   margin: auto;
   position: relative;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
 }
 
 .image-loader {
@@ -27,14 +29,18 @@ img {
   border-radius: 20px;
 }
 
-.image-tag {
-  padding: 0.1rem 0.5rem;
-  margin-right: 1rem;
+.image-tag-container {
+  width: 100%;
+  padding: 1.1rem;
+  align-items: center;
+  justify-content: flex-start;
   position: absolute;
-  top: 1rem;
-  left: 1rem;
-  border-radius: 10px;
-  border: 2px solid white;
-  color: white;
-  background-color: rgba(0, 76, 143, 0.3);
+  top: 0;
+}
+
+@media (max-width: 450px) {
+  .image-card {
+    width: 16rem;
+    height: 16rem;
+  }
 }

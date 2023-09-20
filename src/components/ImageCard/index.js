@@ -4,6 +4,7 @@ import { CSS } from "@dnd-kit/utilities";
 
 import Loader from "../Loader";
 import "./style.css";
+import ImageTag from "../ImageTag";
 
 const ImageCard = ({ image }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -41,12 +42,18 @@ const ImageCard = ({ image }) => {
           style={{ display: isLoading ? "none" : "block" }}
           onLoad={handleImageLoad}
         ></img>
-        <span
-          className="image-tag"
-          style={{ display: isLoading ? "none" : "block" }}
+        <div
+          className="image-tag-container"
+          style={{ display: isLoading ? "none" : "flex" }}
         >
-          {image.tag}
-        </span>
+          {image.tags.slice(0, 3).map((tag, index) => {
+            return (
+              <div>
+                <ImageTag key={index} tag={tag} />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

@@ -3,18 +3,17 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-import Navbar from "../../components/Navbar";
-import Loader from "../../components/Loader";
-import ImageCard from "../../components/ImageCard";
-import ImageData from "../../constants/ImageData";
-
-import "./style.css";
 import {
   SortableContext,
   arrayMove,
   rectSortingStrategy,
 } from "@dnd-kit/sortable";
+
+import Navbar from "../../components/Navbar";
+import Loader from "../../components/Loader";
+import ImageCard from "../../components/ImageCard";
+import fetchImages from "../../services/ApiClient";
+import "./style.css";
 
 const Home = () => {
   const { isLoading } = useAuth0();
@@ -23,8 +22,8 @@ const Home = () => {
   let displayImages = images;
   const { isAuthenticated } = useAuth0();
 
-  const fetchData = () => {
-    const fetchedImages = ImageData();
+  const fetchData = async () => {
+    const fetchedImages = await fetchImages();
     setImages(fetchedImages);
   };
 
@@ -34,13 +33,13 @@ const Home = () => {
 
   const handleSearch = (query) => {
     setSearchQuery(query);
-    console.log(query);
   };
 
   const filteredImages = displayImages.filter((image) => {
-    return searchQuery.toLowerCase() === ""
-      ? image
-      : image.tag.includes(searchQuery);
+    return (
+      searchQuery.toLowerCase() === "" ||
+      image.tags.some((tag) => tag.includes(searchQuery))
+    );
   });
 
   useEffect(() => {

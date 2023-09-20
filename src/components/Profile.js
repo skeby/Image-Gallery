@@ -6,7 +6,7 @@ const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
 
   const handleProfileClick = () => {
-    toast(`You're logged in as ${user.name}`);
+    toast.success(`Logged in as ${user.name}`);
   };
 
   return (

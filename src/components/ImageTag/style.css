@@ -1,0 +1,9 @@
+.image-tag {
+  padding: 0.1rem 0.5rem;
+  margin-right: 1rem;
+  display: flex;
+  border: 2px solid white;
+  border-radius: 10px;
+  color: white;
+  background-color: rgba(0, 76, 143, 0.3);
+}
