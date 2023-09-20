@@ -48,8 +48,8 @@ const ImageCard = ({ image }) => {
         >
           {image.tags.slice(0, 3).map((tag, index) => {
             return (
-              <div>
-                <ImageTag key={index} tag={tag} />
+              <div key={index}>
+                <ImageTag tag={tag} />
               </div>
             );
           })}
