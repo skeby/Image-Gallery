@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { DndContext, closestCenter } from "@dnd-kit/core";
+import {
+  DndContext,
+  closestCenter,
+  useSensor,
+  useSensors,
+  MouseSensor,
+  TouchSensor,
+  KeyboardSensor,
+} from "@dnd-kit/core";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -16,11 +24,20 @@ import fetchImages from "../../services/ApiClient";
 import "./style.css";
 
 const Home = () => {
-  const { isLoading } = useAuth0();
+  const { isLoading, isAuthenticated } = useAuth0();
   const [images, setImages] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   let displayImages = images;
-  const { isAuthenticated } = useAuth0();
+
+  const mouseSensor = useSensor(MouseSensor);
+  const touchSensor = useSensor(TouchSensor, {
+    activationConstraint: {
+      delay: 300,
+      tolerance: 5,
+    },
+  });
+  const keyboardSensor = useSensor(KeyboardSensor);
+  const sensors = useSensors(mouseSensor, touchSensor, keyboardSensor);
 
   const fetchData = async () => {
     const fetchedImages = await fetchImages();
@@ -57,7 +74,7 @@ const Home = () => {
   }
 
   const onDragEnd = ({ active, over }) => {
-    if (active.id === over.id) {
+    if (!active || !over || active.id === over.id) {
       return;
     }
     setImages((displayImages) => {
@@ -80,7 +97,11 @@ const Home = () => {
         image shuffling today!
       </span>
       {isAuthenticated ? (
-        <DndContext collisionDetection={closestCenter} onDragEnd={onDragEnd}>
+        <DndContext
+          collisionDetection={closestCenter}
+          onDragEnd={onDragEnd}
+          sensors={sensors}
+        >
           <div className="image-cards">
             <SortableContext
               items={displayImages}
