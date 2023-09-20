@@ -40,6 +40,12 @@ button:active {
   transform: scale(0.95);
 }
 
+button:hover {
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
+  color: rgb(0, 76, 143);
+  background-color: white;
+}
+
 button#logout {
   margin-left: 1rem;
 }
@@ -103,7 +109,8 @@ button#logout {
 }
 
 @media (max-width: 450px) {
-  nav p, #search::placeholder {
+  nav p,
+  #search::placeholder {
     font-size: 0.8rem;
   }
 }

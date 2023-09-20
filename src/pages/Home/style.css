@@ -6,6 +6,7 @@
 
 body {
   font-family: "DM-sans", sans-serif;
+  padding-bottom: 3rem;
 }
 
 .auth-loader {
@@ -33,10 +34,12 @@ body {
 }
 
 .image-cards {
+  height: 100%;
+  width: 100%;
+  padding: 0 3rem;
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  margin: 0 2rem 1rem 2rem;
 }
 
 @media (max-width: 1550px) {
@@ -51,7 +54,7 @@ body {
   }
 }
 
-@media (max-width: 800px) {  
+@media (max-width: 800px) {
   .image-cards {
     grid-template-columns: 1fr;
   }

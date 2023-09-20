@@ -1,6 +1,7 @@
 .image-tag {
   padding: 0.1rem 0.5rem;
-  margin-right: 1rem;
+  margin-right: 0.4rem;
+  margin-bottom: 0.4rem;
   display: flex;
   border: 2px solid white;
   border-radius: 10px;

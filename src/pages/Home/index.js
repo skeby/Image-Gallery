@@ -86,6 +86,10 @@ const Home = () => {
     });
   };
 
+  const handleDragError = () => {
+    toast.error("Log in to use drag and drop");
+  };
+
   return (
     <div>
       <Navbar onSearch={handleSearch} />
@@ -96,30 +100,19 @@ const Home = () => {
         arrangements effortlessly. Join us and discover the joy of interactive
         image shuffling today!
       </span>
-      {isAuthenticated ? (
-        <DndContext
-          collisionDetection={closestCenter}
-          onDragEnd={onDragEnd}
-          sensors={sensors}
-        >
-          <div className="image-cards">
-            <SortableContext
-              items={displayImages}
-              strategy={rectSortingStrategy}
-            >
-              {filteredImages.map((image) => (
-                <ImageCard key={image.id} image={image} />
-              ))}
-            </SortableContext>
-          </div>
-        </DndContext>
-      ) : (
+      <DndContext
+        collisionDetection={closestCenter}
+        onDragEnd={isAuthenticated ? onDragEnd : handleDragError}
+        sensors={sensors}
+      >
         <div className="image-cards">
-          {filteredImages.map((image) => (
-            <ImageCard key={image.id} image={image} />
-          ))}
+          <SortableContext items={displayImages} strategy={rectSortingStrategy}>
+            {filteredImages.map((image) => (
+              <ImageCard key={image.id} image={image} />
+            ))}
+          </SortableContext>
         </div>
-      )}
+      </DndContext>
       <ToastContainer />
     </div>
   );
