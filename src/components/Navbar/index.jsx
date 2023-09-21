@@ -1,7 +1,7 @@
-import Searchbar from "../../components/Searchbar";
-import LoginButton from "../../components/LoginButton";
-import LogoutButton from "../../components/LogoutButton";
-import Profile from "../../components/Profile";
+import Searchbar from "../Searchbar";
+import LoginButton from "../LoginButton";
+import LogoutButton from "../LogoutButton";
+import Profile from "../Profile";
 import "./style.css";
 
 const Navbar = ({ onSearch }) => {
