@@ -40,8 +40,12 @@ const Home = () => {
   const sensors = useSensors(mouseSensor, touchSensor, keyboardSensor);
 
   const fetchData = async () => {
-    const fetchedImages = await fetchImages();
-    setImages(fetchedImages);
+    try {
+      const fetchedImages = await fetchImages();
+      setImages(fetchedImages);
+    } catch (error) {
+      toast.error('An error occured while fetching images');
+    }    
   };
 
   useEffect(() => {

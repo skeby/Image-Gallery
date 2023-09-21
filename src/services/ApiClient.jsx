@@ -25,7 +25,8 @@ const fetchImages = async () => {
       tags: image.tags.map((tag) => tag.title),
     }));
   } catch (error) {
-    toast.error(error);
+    toast.error('An error occured while fetching images');
+    console.error('Error fetching images', error)
   }
 
   return images;
