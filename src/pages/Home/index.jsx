@@ -44,8 +44,8 @@ const Home = () => {
       const fetchedImages = await fetchImages();
       setImages(fetchedImages);
     } catch (error) {
-      toast.error('An error occured while fetching images');
-    }    
+      toast.error("An error occured while fetching images");
+    }
   };
 
   useEffect(() => {
@@ -56,11 +56,14 @@ const Home = () => {
     setSearchQuery(query);
   };
 
-  const filteredImages = displayImages.filter((image) => {
-    return (
-      searchQuery === "" || image.tags.some((tag) => tag.includes(searchQuery))
-    );
-  });
+  const filteredImages = displayImages
+    ? displayImages.filter((image) => {
+        return (
+          searchQuery === "" ||
+          image.tags.some((tag) => tag.includes(searchQuery))
+        );
+      })
+    : [];
 
   useEffect(() => {
     if (filteredImages.length === 0 && searchQuery !== "") {
