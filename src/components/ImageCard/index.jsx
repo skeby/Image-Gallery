@@ -10,13 +10,20 @@ import { useEffect } from "react";
 const ImageCard = ({ image }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: image.id });
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    isDragging,
+    transform,
+    transition,
+  } = useSortable({ id: image.id });
 
   const style = {
     ...attributes.style,
     transition,
     transform: CSS.Transform.toString(transform),
+    zIndex: isDragging ? 1 : 0,
   };
 
   const handleImageLoad = () => {
