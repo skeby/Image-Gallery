@@ -1,22 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-export default function SearchBar({ onSearch }) {
-  const [query, setQuery] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSearch(query.toLowerCase());
-  };
-
-  const handleChange = (e) => {
-    setQuery(e.target.value);
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.keyCode === 13) {
-      handleSubmit(e);
-    }
-  };
+export default function SearchBar({ query, handleSearch }) {
   return (
     <div className="max-w-md search-bar-container">
       <div className="relative flex items-center w-42 h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
@@ -36,16 +20,14 @@ export default function SearchBar({ onSearch }) {
             />
           </svg>
         </div>
-        <form onSubmit={handleSubmit}>
-          <input
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-            type="search"
-            className="peer h-full w-full outline-none text-sm text-gray-700 px-2"
-            id="search"
-            placeholder="Search for images"
-          />
-        </form>
+        <input
+          onChange={handleSearch}
+          value={query}
+          type="search"
+          className="peer h-full w-full outline-none text-sm text-gray-700 px-2"
+          id="search"
+          placeholder="Search for images"
+        />
       </div>
     </div>
   );

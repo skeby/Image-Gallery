@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import {
   DndContext,
@@ -20,15 +20,13 @@ import {
 import Navbar from "../../components/Navbar";
 import Loader from "../../components/Loader";
 import ImageCard from "../../components/ImageCard";
-import fetchImages from "../../services/ApiClient";
+import useImages from "../../hooks/useImages";
 import "./style.css";
 
 const Home = () => {
+  const [query, setQuery] = useState("");
+  const { images, setImages } = useImages(query);
   const { isLoading, isAuthenticated } = useAuth0();
-  const [images, setImages] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  let displayImages = images;
-
   const mouseSensor = useSensor(MouseSensor);
   const touchSensor = useSensor(TouchSensor, {
     activationConstraint: {
@@ -38,38 +36,6 @@ const Home = () => {
   });
   const keyboardSensor = useSensor(KeyboardSensor);
   const sensors = useSensors(mouseSensor, touchSensor, keyboardSensor);
-
-  const fetchData = async () => {
-    try {
-      const fetchedImages = await fetchImages();
-      setImages(fetchedImages);
-    } catch (error) {
-      toast.error("An error occured while fetching images");
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const handleSearch = (query) => {
-    setSearchQuery(query);
-  };
-
-  const filteredImages = displayImages
-    ? displayImages.filter((image) => {
-        return (
-          searchQuery === "" ||
-          image.tags.some((tag) => tag.includes(searchQuery))
-        );
-      })
-    : [];
-
-  useEffect(() => {
-    if (filteredImages.length === 0 && searchQuery !== "") {
-      toast.error("No images found");
-    }
-  }, [filteredImages, searchQuery]);
 
   if (isLoading) {
     return (
@@ -99,9 +65,12 @@ const Home = () => {
     toast.error("Log in to use drag and drop");
   };
 
+  const handleSearch = (e) => {
+    setQuery(e.target.value);
+  };
   return (
     <div>
-      <Navbar onSearch={handleSearch} />
+      <Navbar handleSearch={handleSearch} query={query} />
       <span className="description">
         Welcome to our interactive image gallery. Explore a stunning collection
         of images and unleash your creativity by rearranging them with a simple
@@ -115,8 +84,8 @@ const Home = () => {
         sensors={sensors}
       >
         <div className="image-cards">
-          <SortableContext items={displayImages} strategy={rectSortingStrategy}>
-            {filteredImages.map((image) => (
+          <SortableContext items={images} strategy={rectSortingStrategy}>
+            {images.map((image) => (
               <ImageCard key={image.id} image={image} />
             ))}
           </SortableContext>
