@@ -67,18 +67,20 @@ const ImageCard = ({ image }) => {
         ></img>
       )}
 
-      <div
-        className="image-tag-container"
-        style={{ display: isLoading ? "none" : "flex" }}
-      >
-        {image.tags.slice(0, 3).map((tag, index) => {
-          return (
-            <div key={index}>
-              <ImageTag tag={tag} />
-            </div>
-          );
-        })}
-      </div>
+      {!isLoading && (
+        <div
+          className="image-tag-container"
+          style={{ display: isLoading ? "none" : "flex" }}
+        >
+          {image.tags.slice(0, 3).map((tag, index) => {
+            return (
+              <div key={index}>
+                <ImageTag tag={tag} />
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

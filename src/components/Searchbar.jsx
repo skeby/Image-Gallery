@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 
 export default function SearchBar({ query, handleSearch }) {
+  const inputRef = useRef(null);
+  useEffect(() => {
+    if (query) inputRef?.current?.focus();
+  }, [query]);
   return (
     <div className="max-w-md search-bar-container">
       <div className="relative flex items-center w-42 h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
@@ -22,9 +26,7 @@ export default function SearchBar({ query, handleSearch }) {
         </div>
         <input
           onChange={handleSearch}
-          ref={(input) => {
-            input && input.focus();
-          }}
+          ref={inputRef}
           value={query}
           type="search"
           className="peer h-full w-full outline-none text-sm text-gray-700 px-2"
