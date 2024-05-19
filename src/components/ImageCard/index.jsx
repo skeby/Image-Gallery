@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
 import Loader from "../Loader";
 import ImageTag from "../ImageTag";
 import "./style.css";
-import { useEffect } from "react";
 
 const ImageCard = ({ image }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,6 +23,7 @@ const ImageCard = ({ image }) => {
     transition,
     transform: CSS.Transform.toString(transform),
     zIndex: isDragging ? 1 : 0,
+    boxShadow: !isLoading ? "0 0 1px 1px rgba(0, 0, 0, 0.2)" : undefined,
   };
 
   const handleImageLoad = () => {
@@ -31,7 +31,7 @@ const ImageCard = ({ image }) => {
   };
 
   useEffect(() => {
-    const delay = 1000; // Delay in milliseconds
+    const delay = 0; // Delay in milliseconds
 
     // Simulate the image loading process
     const timer = setTimeout(() => {

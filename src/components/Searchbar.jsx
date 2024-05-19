@@ -22,6 +22,9 @@ export default function SearchBar({ query, handleSearch }) {
         </div>
         <input
           onChange={handleSearch}
+          ref={(input) => {
+            input && input.focus();
+          }}
           value={query}
           type="search"
           className="peer h-full w-full outline-none text-sm text-gray-700 px-2"

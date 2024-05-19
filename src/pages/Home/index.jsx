@@ -25,8 +25,8 @@ import "./style.css";
 
 const Home = () => {
   const [query, setQuery] = useState("");
-  const { images, setImages } = useImages(query);
-  const { isLoading, isAuthenticated } = useAuth0();
+  const { images, setImages, isLoading } = useImages(query);
+  const { isLoading: isAuthenticating, isAuthenticated } = useAuth0();
   const mouseSensor = useSensor(MouseSensor);
   const touchSensor = useSensor(TouchSensor, {
     activationConstraint: {
@@ -37,7 +37,7 @@ const Home = () => {
   const keyboardSensor = useSensor(KeyboardSensor);
   const sensors = useSensors(mouseSensor, touchSensor, keyboardSensor);
 
-  if (isLoading) {
+  if (isLoading || isAuthenticating) {
     return (
       <div className="auth-loader">
         <Loader />
