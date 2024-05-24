@@ -3,6 +3,7 @@
   height: 400px; */
   /* This ensures the width and height are always the same, creating a square */
   aspect-ratio: 1 / 1;
+  cursor: move;
   margin: auto;
   position: relative;
   border-radius: 20px;

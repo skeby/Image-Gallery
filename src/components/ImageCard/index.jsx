@@ -21,7 +21,9 @@ const ImageCard = ({ image }) => {
   const style = {
     ...attributes.style,
     transition,
-    transform: CSS.Transform.toString(transform),
+    transform: isDragging
+      ? `${CSS.Transform.toString(transform)} scale(1.08)`
+      : CSS.Transform.toString(transform),
     zIndex: isDragging ? 1 : 0,
     boxShadow: !isLoading ? "0 0 1px 1px rgba(0, 0, 0, 0.2)" : undefined,
   };
